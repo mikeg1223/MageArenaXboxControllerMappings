@@ -3,7 +3,13 @@ A C++ program for mapping input from a connected Xbox One X Pro Controller to ke
 This program only functions for Windows currently.
 
 ## Running the program
-1. TO DO: Explain this, im lazy right now
+1. Obtain a copy of this code.
+2. Open your preferred shell terminal.
+3. Ensure you have a copy of g++ installed on your machine and added to PATH.
+4. Navigate to the containing directory for mage_arena_xbox_controller_mappings.cpp
+5. Compile and link the program using: `g++ -std=c++20 -O2 -o mage_arena_xbox_controller_mappings mage_arena_xbox_controller_mappings.cpp -lXinput -luser32 -lwinmm`
+6. Run the program using `./mage_arena_xbox_controller_mappings` on your shell terminal.
+7. To close the program exit the pop-up window, or click the OK button.
 
 ## Button Mappings from controller to keyboard and mouse:
 1. A -> space
