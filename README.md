@@ -2,6 +2,7 @@
 A C++ program for mapping input from a connected Xbox One X Pro Controller to key-board and mouse input for use with the game Mage Arena on Steam.
 This program only functions for Windows currently.
 
+<!-- TODO: Give a more granular running process. -->
 ## Running the program
 1. Obtain a copy of this code.
 2. Open your preferred shell terminal.
@@ -11,6 +12,7 @@ This program only functions for Windows currently.
 6. Run the program using `./mage_arena_xbox_controller_mappings` on your shell terminal.
 7. To close the program exit the pop-up window, or click the OK button.
 
+<!-- TODO: Make this a table and format it. -->
 ## Button Mappings from controller to keyboard and mouse:
 1. A -> space
 2. B -> G
