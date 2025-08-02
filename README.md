@@ -12,22 +12,23 @@ This program only functions for Windows currently.
 6. Run the program using `./mage_arena_xbox_controller_mappings` on your shell terminal.
 7. To close the program exit the pop-up window, or click the OK button.
 
-<!-- TODO: Make this a table and format it. -->
 ## Button Mappings from controller to keyboard and mouse:
-1. A -> space
-2. B -> G
-3. Y -> B
-4. X -> E
-5. L3 -> shift
-6. R3 -> Ctrl
-7. D-pad Up -> 1
-8. D-pad Right -> 2
-9. D-pad Down -> 3
-10. D-pad Left -> 4
-11. Start -> Esc
-12. Back/Select -> Q
-13. LB -> Mouse Wheel Up
-14. RB -> Mouse Wheel Down
-15. RT -> Mouse Left Click
-16. Right Stick -> WASD
-17. Left Stick -> Mouse Movement
+| X-box Input| Key-Board Output | Mouse Output |
+| ---------- | ---------------- | ------------ |
+| A | Space ||
+| B | G ||
+| Y | B ||
+| X | E ||
+| L3 | Shift ||
+| R3 | Ctrl ||
+| D-pad Up | 1 ||
+| D-pad Right | 2 ||
+| D-pad Down | 3 ||
+| D-pad Left | 4 ||
+| Start | Escape ||
+| Select/Back | Q ||
+| LB || Wheel Up |
+| RB || Wheel Down |
+| RT || Left Click Down |
+| Right Stick | WASD ||
+| Left Stick || Movement |
