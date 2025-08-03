@@ -24,6 +24,9 @@
 #define VK_4 0x34
 
 
+namespace xbox_mapping {
+namespace {
+
 // ---------------------------------------------------------------------
 // Mapping tables & tuning ─ tweak these to taste
 // ---------------------------------------------------------------------
@@ -45,7 +48,7 @@ constexpr std::array BUTTON_MAP {
     // A, B, X, Y - > Jump, Drop, , Interact
     ButtonRule{ XINPUT_GAMEPAD_A,              VK_SPACE,   0,                0 }, // jump
     ButtonRule{ XINPUT_GAMEPAD_B,              VK_G,       0,                0 }, // drop, g
-    ButtonRule{ XINPUT_GAMEPAD_Y,              VK_B,       0,                0 }, // map, q
+    ButtonRule{ XINPUT_GAMEPAD_Y,              VK_B,       0,                0 }, // return to base, b
     ButtonRule{ XINPUT_GAMEPAD_X,              VK_E,       0,                0 }, // interact, e
 
     // Left/right stick buttons -> Sprint and Crouch
@@ -59,8 +62,8 @@ constexpr std::array BUTTON_MAP {
     ButtonRule{ XINPUT_GAMEPAD_DPAD_LEFT,      VK_4,       0,                 0 }, // 4
 
     // Start button -> escape
-    ButtonRule{ XINPUT_GAMEPAD_START,          VK_ESCAPE,  0,                 0 }, // esc
-    ButtonRule{ XINPUT_GAMEPAD_BACK,           VK_Q,       0,                 0 }, // esc
+    ButtonRule{ XINPUT_GAMEPAD_START,          VK_ESCAPE,  0,                 0 }, // start menu, esc
+    ButtonRule{ XINPUT_GAMEPAD_BACK,           VK_Q,       0,                 0 }, // map, q
 
     // Shoulders → change active use (mouse scroll up and down)
     ButtonRule{ XINPUT_GAMEPAD_LEFT_SHOULDER,  0,          0,                 +WHEEL_DELTA },
@@ -102,6 +105,8 @@ void send(const std::initializer_list<INPUT>& list) {
     if (!list.size()) return;
     SendInput(static_cast<UINT>(list.size()), const_cast<INPUT*>(list.begin()), sizeof(INPUT));
 }
+
+} // namespace
 
 // ---------------------------------------------------------------------
 void pollLoop(std::stop_token st) {
@@ -191,23 +196,12 @@ void pollLoop(std::stop_token st) {
             }
 
             prev = cur;
-        }
+        } // if (XInputGetState(0, &cur) == ERROR_SUCCESS)
+
         // 1 ms cadence (~1000 Hz)
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
-    }
-}
+        
+    } // while(!st.stop_requested())
+} // pollLoop
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
-    timeBeginPeriod(1);  // 1 ms timer resolution for Sleep()
-
-    // Spawn high‑priority polling thread
-    std::jthread pollThread(pollLoop);
-
-    MessageBoxA(nullptr,
-        "Xbox to KB/M mapper running.\n"
-        "Press OK or close window to quit.",
-        "Xbox Mapper", MB_OK);
-
-    // jthread joins on destruction
-    return 0;
-}
+} // namespace xbox_mapping
